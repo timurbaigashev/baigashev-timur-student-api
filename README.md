@@ -1,4 +1,4 @@
-# Student API
+# Student Management REST API
 
 **Developer:** Timur Baigashev
 
