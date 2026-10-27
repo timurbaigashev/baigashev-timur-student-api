@@ -1,0 +1,50 @@
+name: baigashev-timur-student-api
+
+services:
+  app:
+    image: baigashev-timur-student-api:v1.0-baigashev-timur
+    container_name: baigashev-timur-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/student_api
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - baigashev-timur-network
+    restart: unless-stopped
+
+  db:
+    image: postgres:16
+    container_name: baigashev-timur-postgres
+    environment:
+      POSTGRES_DB: student_api
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - baigashev-timur-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - baigashev-timur-network
+    restart: unless-stopped
+
+volumes:
+  baigashev-timur-postgres-data:
+    name: baigashev-timur-postgres-data
+
+networks:
+  baigashev-timur-network:
+    name: baigashev-timur-network
+    driver: bridge
+
