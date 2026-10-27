@@ -1,4 +1,4 @@
-# Student API
+# Student API - Documentation Update
 
 **Developer:** Timur Baigashev
 
