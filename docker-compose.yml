@@ -2,7 +2,7 @@ name: baigashev-timur-student-api
 
 services:
   app:
-    image: baigashev-timur-student-api:v1.0-baigashev-timur
+    image: baigashev-timur-student-api:v1.1-baigashev-timur
     container_name: baigashev-timur-app
     build:
       context: .
