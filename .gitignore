@@ -1,0 +1,26 @@
+# Java compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# Build output
+target/
+build/
+out/
+
+# Gradle
+.gradle/
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Spring Boot configuration with secrets
+application-local.properties
+application-local.yml
+application-local.yaml
